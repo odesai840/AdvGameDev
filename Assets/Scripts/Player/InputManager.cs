@@ -20,15 +20,16 @@ public class InputManager : MonoBehaviour
         playerControls.Jump.performed += ctx => movement.Jump();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         movement.ProcessMovement(playerControls.Movement.ReadValue<Vector2>());
-    }
-
-    private void LateUpdate()
-    {
         look.ProcessLook(playerControls.Look.ReadValue<Vector2>());
     }
+
+    //private void LateUpdate()
+    //{
+        
+    //}
 
     private void OnEnable()
     {

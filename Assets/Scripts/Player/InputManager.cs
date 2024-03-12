@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
 
     void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         playerInput = new PlayerInput();
         playerControls = playerInput.PlayerControls;
         movement = GetComponent<PlayerMovement>();
@@ -25,11 +26,6 @@ public class InputManager : MonoBehaviour
         movement.ProcessMovement(playerControls.Movement.ReadValue<Vector2>());
         look.ProcessLook(playerControls.Look.ReadValue<Vector2>());
     }
-
-    //private void LateUpdate()
-    //{
-        
-    //}
 
     private void OnEnable()
     {

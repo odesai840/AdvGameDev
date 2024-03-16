@@ -2729,6 +2729,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203261835408757445, guid: 1d4f070afcd44894dabb286927e0b0a8, type: 3}
+      propertyPath: field of view
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 5636543887449841178, guid: 1d4f070afcd44894dabb286927e0b0a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2812,7 +2816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 22
   gravity: -20
-  jumpHeight: 1.7
+  jumpHeight: 3
 --- !u!114 &3501183208957063733
 MonoBehaviour:
   m_ObjectHideFlags: 0

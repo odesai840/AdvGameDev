@@ -20,7 +20,11 @@ public class PlayerLook : MonoBehaviour
         // Calculate camera rotation for looking up and down
         xRotation -= (mouseY * Time.deltaTime) * ySensitivity;
         xRotation = Mathf.Clamp(xRotation, -80f, 80f);
-        // Apply calculated rotation to camera transform
+        // Apply calculated rotation to camera transform:
+        // Quaternion.Euler can suffer from "Gimbal Lock"
+        // if you want to rotate around a specific axis
+        // use Quaternion.AngleAxis();
+        // The occasional camera jitter is due to something else I guess.
         cam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         // Rotate player to look left and right
         transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);

@@ -20,7 +20,6 @@ public class InputManager : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         look = GetComponent<PlayerLook>();
         shoot = GetComponent<PlayerShoot>();
-        playerControls.Jump.performed += ctx => movement.Jump();
     }
 
     void Update()
@@ -28,6 +27,7 @@ public class InputManager : MonoBehaviour
         movement.ProcessMovement(playerControls.Movement.ReadValue<Vector2>());
         look.ProcessLook(playerControls.Look.ReadValue<Vector2>());
         shoot.ProcessShoot(playerControls.Shoot.IsPressed());
+        movement.Jump(playerControls.Jump.IsPressed());
     }
 
     private void OnEnable()

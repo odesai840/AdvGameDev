@@ -7,9 +7,9 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool isGrounded;
-    public float speed = 10f;
-    public float gravity = -9.8f;
-    public float jumpHeight = 1.5f;
+    public float speed = 22f;
+    public float gravity = -20f;
+    public float jumpHeight = 1.7f;
 
     // Start is called before the first frame update
     void Start()

@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public float speed = 22f;
     public float gravity = -20f;
-    public float jumpHeight = 1.7f;
+    public float jumpHeight = 3f;
 
     // Start is called before the first frame update
     void Start()

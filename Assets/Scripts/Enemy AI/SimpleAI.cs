@@ -52,6 +52,8 @@ public class SimpleAI : MonoBehaviour
 
     private void Patrolling()
     {
+
+        Debug.Log("Patrolling");
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -82,11 +84,13 @@ public class SimpleAI : MonoBehaviour
 
     private void ChasePlayer()
     {
+        Debug.Log("Chasing");
         agent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
+        Debug.Log("Attacking");
         //Make sure enemy doesn't move 
         agent.SetDestination(transform.position);
 

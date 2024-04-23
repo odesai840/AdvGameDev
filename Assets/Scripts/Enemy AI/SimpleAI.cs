@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Security.Cryptography;
 //using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +16,8 @@ public class SimpleAI : MonoBehaviour
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
+
+    private Animator mAnimator;
 
 
     // Patrolling
@@ -35,6 +39,9 @@ public class SimpleAI : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;  // Name of player object
         agent = GetComponent<NavMeshAgent>();
+
+
+        mAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -43,9 +50,24 @@ public class SimpleAI : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patrolling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        mAnimator.SetBool("IsPatrolling", !playerInSightRange && !playerInAttackRange);
+        mAnimator.SetBool("IsChasing", playerInSightRange && !playerInAttackRange);
+        mAnimator.SetBool("IsAttacking", playerInSightRange && playerInAttackRange);
+
+        if (!playerInSightRange && !playerInAttackRange)
+        {
+            Patrolling();
+        }
+        // Handle ChasePlayer state
+        if (playerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+        }
+        // Handle AttackPlayer state
+        if (playerInSightRange && playerInAttackRange)
+        {
+            AttackPlayer();
+        }
 
 
     }
@@ -53,7 +75,7 @@ public class SimpleAI : MonoBehaviour
     private void Patrolling()
     {
 
-        Debug.Log("Patrolling");
+        //UnityEngine.Debug.Log("Patrolling");
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -84,27 +106,28 @@ public class SimpleAI : MonoBehaviour
 
     private void ChasePlayer()
     {
-        Debug.Log("Chasing");
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        agent.speed = 4;
         agent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
-        Debug.Log("Attacking");
-        //Make sure enemy doesn't move 
-        agent.SetDestination(transform.position);
+        agent.SetDestination(transform.position); // Stop the agent
 
-        transform.LookAt(player);
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if(!alreadyAttacked)
+        if (distanceToPlayer <= attackRange)
         {
-            //Attack Code HERE
-            
+            transform.LookAt(player); // Look at the player when attacking
 
-            //////
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            agent.speed = 0;
+            if (!alreadyAttacked)
+            {
+                // Attack Code HERE
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
         }
     }
 

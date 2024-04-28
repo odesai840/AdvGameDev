@@ -28,6 +28,7 @@ public class SimpleAI : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    public float damage;
     
 
     //States
@@ -122,7 +123,7 @@ public class SimpleAI : MonoBehaviour
             Vector3 directionToPlayer = player.position - transform.position;
             float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
-            if (angle < 60) // Adjust the angle as per your requirement
+            if (angle < 60) 
             {
                 transform.LookAt(player); // Look at the player when attacking
 
@@ -130,7 +131,7 @@ public class SimpleAI : MonoBehaviour
                 if (!alreadyAttacked)
                 {
                     // Damage the player here
-                    player.GetComponent<PlayerHealth>().TakeDamage(10); // Assuming PlayerHealth script exists
+                    player.GetComponent<PlayerHealth>().TakeDamage(damage);
                     alreadyAttacked = true;
                     Invoke(nameof(ResetAttack), timeBetweenAttacks);
                 }

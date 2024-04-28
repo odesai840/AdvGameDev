@@ -119,14 +119,21 @@ public class SimpleAI : MonoBehaviour
 
         if (distanceToPlayer <= attackRange)
         {
-            transform.LookAt(player); // Look at the player when attacking
+            Vector3 directionToPlayer = player.position - transform.position;
+            float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
-            agent.speed = 0;
-            if (!alreadyAttacked)
+            if (angle < 60) // Adjust the angle as per your requirement
             {
-                // Attack Code HERE
-                alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                transform.LookAt(player); // Look at the player when attacking
+
+                agent.speed = 0;
+                if (!alreadyAttacked)
+                {
+                    // Damage the player here
+                    player.GetComponent<PlayerHealth>().TakeDamage(10); // Assuming PlayerHealth script exists
+                    alreadyAttacked = true;
+                    Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                }
             }
         }
     }

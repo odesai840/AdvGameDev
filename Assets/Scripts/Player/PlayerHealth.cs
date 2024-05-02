@@ -73,4 +73,13 @@ public class PlayerHealth : MonoBehaviour
         health += healAmount;
         lerpTimer = 0f;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Medkit"))
+        {
+            RestoreHealth(30f); // Heal the player by 30 health
+            Destroy(other.gameObject); // Destroy the medkit
+        }
+    }
 }

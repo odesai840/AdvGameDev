@@ -13,8 +13,12 @@ public class Medkit : MonoBehaviour
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.RestoreHealth(healAmount);
-                Destroy(gameObject); // Destroy the medkit after healing the player
+                if (!(playerHealth.GetHealth() >= 100))
+                {
+                    playerHealth.RestoreHealth(healAmount);
+                    Destroy(gameObject); // Destroy the medkit after healing the player
+                }
+
             }
         }
     }

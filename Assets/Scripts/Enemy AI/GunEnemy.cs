@@ -27,8 +27,16 @@ public class GunEnemy : MonoBehaviour
 
     //Attacking
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    //bool alreadyAttacked;
     public float damage;
+
+    //Shooting
+    public GameObject enemyBullet;
+    public Transform spawnPoint;
+    public float enemySpeed;
+
+    [SerializeField] private float timer = 5;
+    private float bulletTime;
     
 
     //States
@@ -43,17 +51,20 @@ public class GunEnemy : MonoBehaviour
 
 
         mAnimator = GetComponent<Animator>();
+
+        mAnimator.SetBool("IsPatrolling", true);
     }
 
+    
     private void Update()
     {
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        mAnimator.SetBool("IsPatrolling", !playerInSightRange && !playerInAttackRange);
-        mAnimator.SetBool("IsChasing", playerInSightRange && !playerInAttackRange);
-        mAnimator.SetBool("IsAttacking", playerInSightRange && playerInAttackRange);
+        
+        
+        
 
         if (!playerInSightRange && !playerInAttackRange)
         {
@@ -89,6 +100,10 @@ public class GunEnemy : MonoBehaviour
         {
             walkPointSet = false;
         }
+
+        mAnimator.SetBool("IsPatrolling", true);
+
+        UnityEngine.Debug.Log("patrolling");
     }
     private void SearchWalkPoint()
     {
@@ -110,6 +125,10 @@ public class GunEnemy : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         agent.speed = 4;
         agent.SetDestination(player.position);
+
+        mAnimator.SetBool("IsChasing", true);
+
+        UnityEngine.Debug.Log("Chasing");
     }
 
     private void AttackPlayer()
@@ -117,31 +136,35 @@ public class GunEnemy : MonoBehaviour
         agent.SetDestination(transform.position); // Stop the agent
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        mAnimator.SetBool("IsAttacking", true);
 
         if (distanceToPlayer <= attackRange)
         {
-            Vector3 directionToPlayer = player.position - transform.position;
-            float angle = Vector3.Angle(transform.forward, directionToPlayer);
-
-            if (angle < 60) 
-            {
-                transform.LookAt(player); // Look at the player when attacking
-
-                agent.speed = 0;
-                if (!alreadyAttacked)
-                {
-                    // Damage the player here
-                    player.GetComponent<PlayerHealth>().TakeDamage(damage);
-                    alreadyAttacked = true;
-                    Invoke(nameof(ResetAttack), timeBetweenAttacks);
-                }
-            }
+            ShootAtPlayer();
         }
+
+
+        UnityEngine.Debug.Log("Shooting");
     }
 
     private void ResetAttack()
     {
-        alreadyAttacked = false;
+        //alreadyAttacked = false;
+    }
+
+    void ShootAtPlayer() { 
+        bulletTime -= Time.deltaTime;
+
+        if (bulletTime > 0) return;
+
+        bulletTime = timer;
+
+        GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, transform.rotation) as GameObject;
+        Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
+        bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
+
+        Destroy(bulletObj, 5f);
+        
     }
 
     public void TakeDamage (int damage)

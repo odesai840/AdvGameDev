@@ -35,6 +35,12 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
     }
 
+
+    public float GetHealth()
+    {
+        return health;
+    }
+
     public void UpdateHealthUI()
     {
         float fillF = frontHealthBar.fillAmount;
@@ -74,12 +80,21 @@ public class PlayerHealth : MonoBehaviour
         lerpTimer = 0f;
     }
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Medkit"))
+        if (other.CompareTag("MedKit"))
         {
-            RestoreHealth(30f); // Heal the player by 30 health
-            Destroy(other.gameObject); // Destroy the medkit
+            if ((health == maxHealth))
+            {
+                RestoreHealth(0f);
+            }
+            else {
+                RestoreHealth(30f); // Heal the player by 30 health
+                Destroy(other.gameObject);// Destroy the medkit
+            }
+             
         }
     }
+    */
 }

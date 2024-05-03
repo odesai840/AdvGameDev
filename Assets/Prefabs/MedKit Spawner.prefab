@@ -120,6 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be35152c3b1a1f2409f967761128e325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  medkit: {fileID: 7990781917404063832, guid: cf257eb3ad169424ab9a3cc7b434522f, type: 3}
+  medkit: {fileID: 919132149155446097, guid: e6558c7a349d6b240a01936be4f3e854, type: 3}
   spawnHeight: 1
   spawnInterval: 30

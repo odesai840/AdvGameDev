@@ -35,6 +35,9 @@ public class SimpleAI : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    //Attributes
+    public float health = 150f;
+
 
     private void Awake()
     {
@@ -144,13 +147,11 @@ public class SimpleAI : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage (int damage)
+    public void TakeDamage (float damage)
     {
-        /*
         health -= damage; // Need dmg variable
 
-        if (health <= 0) Invoke(nameOf(DestroyEnemy), 0.5f);
-        */
+        if (health <= 0) Invoke("DestroyEnemy", 0.5f);
     }
 
     private void DestroyEnemy()

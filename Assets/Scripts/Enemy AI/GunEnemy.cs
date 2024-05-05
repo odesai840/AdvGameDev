@@ -43,6 +43,9 @@ public class GunEnemy : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    //Attributes
+    public float health = 50f;
+
 
     private void Awake()
     {
@@ -103,7 +106,7 @@ public class GunEnemy : MonoBehaviour
 
         mAnimator.SetBool("IsPatrolling", true);
 
-        UnityEngine.Debug.Log("patrolling");
+        //UnityEngine.Debug.Log("patrolling");
     }
     private void SearchWalkPoint()
     {
@@ -128,7 +131,7 @@ public class GunEnemy : MonoBehaviour
 
         mAnimator.SetBool("IsChasing", true);
 
-        UnityEngine.Debug.Log("Chasing");
+        //UnityEngine.Debug.Log("Chasing");
     }
 
     private void AttackPlayer()
@@ -144,7 +147,7 @@ public class GunEnemy : MonoBehaviour
         }
 
 
-        UnityEngine.Debug.Log("Shooting");
+        //UnityEngine.Debug.Log("Shooting");
     }
 
     private void ResetAttack()
@@ -167,19 +170,15 @@ public class GunEnemy : MonoBehaviour
         
     }
 
-    public void TakeDamage (int damage)
+    public void TakeDamage (float damage)
     {
-        /*
         health -= damage; // Need dmg variable
 
-        if (health <= 0) Invoke(nameOf(DestroyEnemy), 0.5f);
-        */
+        if (health <= 0f) Invoke("DestroyEnemy", 0.5f);
     }
 
     private void DestroyEnemy()
     {
         Destroy(gameObject);
     }
-
-
 }

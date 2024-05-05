@@ -11,7 +11,7 @@ public class PlayerShoot : MonoBehaviour
     private bool isShooting = false;
 
     Transform cam;
-    public float damage = 10f;
+    public float damage = 50f;
     public float range = 50f;
     public float fireRate = 0.5f;
 
@@ -64,7 +64,11 @@ public class PlayerShoot : MonoBehaviour
         if (Physics.Raycast(cam.position, cam.forward, out hit, range))
         {
             Debug.DrawRay(cam.position, cam.forward * range, Color.red, 1f, true);
-            Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.gameObject);
+            SimpleAI enemy = hit.collider.gameObject.GetComponent<SimpleAI>();
+            enemy?.TakeDamage(damage);
+            GunEnemy gunEnemy = hit.collider.gameObject.GetComponent<GunEnemy>();
+            gunEnemy?.TakeDamage(damage);
         }
     }
 

@@ -80,21 +80,5 @@ public class PlayerHealth : MonoBehaviour
         lerpTimer = 0f;
     }
 
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("MedKit"))
-        {
-            if ((health == maxHealth))
-            {
-                RestoreHealth(0f);
-            }
-            else {
-                RestoreHealth(30f); // Heal the player by 30 health
-                Destroy(other.gameObject);// Destroy the medkit
-            }
-             
-        }
-    }
-    */
+    
 }

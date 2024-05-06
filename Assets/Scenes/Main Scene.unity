@@ -8969,6 +8969,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 3501183208957063762}
+    - target: {fileID: 5652689698104844896, guid: 7facd732639d46249ab37c518471e415, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5986438471857689022, guid: 7facd732639d46249ab37c518471e415, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.14

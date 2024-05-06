@@ -141,7 +141,7 @@ public class GunEnemy : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         mAnimator.SetBool("IsAttacking", true);
 
-        if (distanceToPlayer <= attackRange)
+        if (distanceToPlayer < attackRange)
         {
             ShootAtPlayer();
         }
@@ -162,9 +162,14 @@ public class GunEnemy : MonoBehaviour
 
         bulletTime = timer;
 
-        GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, transform.rotation) as GameObject;
+        Vector3 direction = (player.position - spawnPoint.position).normalized;
+
+        
+        GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, Quaternion.LookRotation(direction)) as GameObject;
+
+        
         Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
-        bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
+        bulletRig.velocity = direction * enemySpeed; 
 
         Destroy(bulletObj, 5f);
         

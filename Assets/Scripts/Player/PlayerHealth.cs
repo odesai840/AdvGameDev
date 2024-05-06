@@ -24,29 +24,21 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = Mathf.Clamp(health, 0, maxHealth);
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            TakeDamage(Random.Range(5, 10));
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            RestoreHealth(Random.Range(5, 10));
-        }
         UpdateHealthUI();
 
         if (health <= 0)
         {
             // Restart the game
-            RestartGame();
+            DeathScreen();
         }
     }
 
-    void RestartGame()
+    void DeathScreen()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         // Reload the current scene
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene("Death Screen");
     }
     public float GetHealth()
     {

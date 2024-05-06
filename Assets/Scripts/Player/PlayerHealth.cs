@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -33,9 +34,20 @@ public class PlayerHealth : MonoBehaviour
             RestoreHealth(Random.Range(5, 10));
         }
         UpdateHealthUI();
+
+        if (health <= 0)
+        {
+            // Restart the game
+            RestartGame();
+        }
     }
 
-
+    void RestartGame()
+    {
+        // Reload the current scene
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
     public float GetHealth()
     {
         return health;

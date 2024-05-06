@@ -285,7 +285,6 @@ MonoBehaviour:
   crosshair: {fileID: 0}
   crosshairShooting: {fileID: 0}
   BulletTrail: {fileID: 8734004708555583808, guid: b978b9cb34435004db4ef217f3f350d6, type: 3}
-  spawnPoint: {fileID: 7975162307383933265, guid: 7f35d38f2df78c841abba74bfc029a8e, type: 3}
   damage: 10
   range: 50
   fireRate: 0.5
@@ -324,8 +323,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.9375114, y: 4.5552354, z: 2.1263876}
-  m_Center: {x: 0.16476512, y: 1.2776177, z: 0.5631939}
+  m_Size: {x: 3.5274444, y: 3.5943573, z: 2.7969894}
+  m_Center: {x: -0.13020134, y: 0.9461061, z: 0.0757193}
 --- !u!1001 &3375576193494518500
 PrefabInstance:
   m_ObjectHideFlags: 0

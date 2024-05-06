@@ -105,6 +105,8 @@ public class GunEnemy : MonoBehaviour
         }
 
         mAnimator.SetBool("IsPatrolling", true);
+        mAnimator.SetBool("IsChasing", false);
+        mAnimator.SetBool("IsAttacking", false);
 
         //UnityEngine.Debug.Log("patrolling");
     }
@@ -129,7 +131,17 @@ public class GunEnemy : MonoBehaviour
         agent.speed = 4;
         agent.SetDestination(player.position);
 
+        Vector3 direction = (player.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+
+        lookRotation *= Quaternion.Euler(0, 45, 0);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+
         mAnimator.SetBool("IsChasing", true);
+        mAnimator.SetBool("IsPatrolling", false);
+        mAnimator.SetBool("IsAttacking", false);
 
         //UnityEngine.Debug.Log("Chasing");
     }
@@ -139,7 +151,20 @@ public class GunEnemy : MonoBehaviour
         agent.SetDestination(transform.position); // Stop the agent
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+
+        Vector3 direction = (player.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+
+        lookRotation *= Quaternion.Euler(0, 45, 0);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+
         mAnimator.SetBool("IsAttacking", true);
+        mAnimator.SetBool("IsPatrolling", false);
+        mAnimator.SetBool("IsChasing", false);
+
 
         if (distanceToPlayer < attackRange)
         {

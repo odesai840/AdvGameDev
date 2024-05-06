@@ -2204,7 +2204,7 @@ Transform:
   m_GameObject: {fileID: 493018188}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
-  m_LocalPosition: {x: -18.46, y: 17.63, z: 35.72}
+  m_LocalPosition: {x: -19.46, y: 18.51, z: 34.72}
   m_LocalScale: {x: 3, y: 1, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6435,6 +6435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToLoad: Main Scene
+  newGameScene: 
+  mainMenuScene: 
   deathScreen: {fileID: 0}
 --- !u!4 &1555473164 stripped
 Transform:

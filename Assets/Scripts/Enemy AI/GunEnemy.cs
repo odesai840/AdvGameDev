@@ -209,6 +209,7 @@ public class GunEnemy : MonoBehaviour
 
     private void DestroyEnemy()
     {
+        EnergyBar.instance.EnemyKilled(20f);
         Destroy(gameObject);
     }
 }

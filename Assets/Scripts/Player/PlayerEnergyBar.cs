@@ -6,12 +6,19 @@ using TMPro;
 
 public class EnergyBar : MonoBehaviour
 {
+    public static EnergyBar instance;
+
     private float energy;
     private float lerpTimer;
     public float maxEnergy = 100f;
     public float chipSpeed = 2f;
     public Image frontEnergyBar;
     public Image backEnergyBar;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +30,6 @@ public class EnergyBar : MonoBehaviour
     void Update()
     {
         energy = Mathf.Clamp(energy, 0, maxEnergy);
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            ConsumeEnergy(Random.Range(5, 10));
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            RestoreEnergy(Random.Range(5, 10));
-        }
         UpdateEnergyUI();
     }
 
@@ -60,6 +59,19 @@ public class EnergyBar : MonoBehaviour
         }
     }
 
+    public void UseDash(float dashCost)
+    {
+        if (CanUseDash())
+        {
+            ConsumeEnergy(dashCost);
+        }
+    }
+
+    public void EnemyKilled(float energyGain)
+    {
+        RestoreEnergy(energyGain);
+    }
+
     public void ConsumeEnergy(float amount)
     {
         energy -= amount;
@@ -70,5 +82,10 @@ public class EnergyBar : MonoBehaviour
     {
         energy += amount;
         lerpTimer = 0f;
+    }
+
+    public bool CanUseDash()
+    {
+        return energy >= 25;
     }
 }

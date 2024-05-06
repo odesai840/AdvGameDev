@@ -156,6 +156,7 @@ public class SimpleAI : MonoBehaviour
 
     private void DestroyEnemy()
     {
+        EnergyBar.instance.EnemyKilled(10f);
         Destroy(gameObject);
     }
 

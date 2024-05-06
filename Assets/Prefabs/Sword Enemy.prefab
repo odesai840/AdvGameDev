@@ -149,7 +149,7 @@ MonoBehaviour:
   walkPointRange: 10
   timeBetweenAttacks: 1.35
   damage: 10
-  sightRange: 20
+  sightRange: 40
   attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0

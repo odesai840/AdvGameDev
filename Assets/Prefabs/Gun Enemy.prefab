@@ -188,8 +188,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 989006021453555465}
   enemySpeed: 250
   timer: 0.5
-  sightRange: 40
-  attackRange: 30
+  sightRange: 60
+  attackRange: 50
   playerInSightRange: 0
   playerInAttackRange: 0
   health: 50

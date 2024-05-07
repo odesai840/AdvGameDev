@@ -238,9 +238,6 @@ MonoBehaviour:
   speed: 22
   gravity: -20
   jumpHeight: 3
-  dashSpeed: 60
-  dashDuration: 0.5
-  dashTimer: 0
 --- !u!114 &7547989617681958088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,8 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 203261835408757445}
-  xSensitivity: 10
-  ySensitivity: 10
+  xSensitivity: 30
+  ySensitivity: 30
 --- !u!114 &1882888673212292468
 MonoBehaviour:
   m_ObjectHideFlags: 0

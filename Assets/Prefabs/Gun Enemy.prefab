@@ -183,7 +183,7 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 0
   timeBetweenAttacks: 0
-  damage: 10
+  damage: 5
   enemyBullet: {fileID: 2522502644714795820, guid: 6b41bceaf97864e40afed51db5c120bf, type: 3}
   spawnPoint: {fileID: 989006021453555465}
   enemySpeed: 250

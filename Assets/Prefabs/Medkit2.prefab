@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1364ae6531cefb34f93bce0477992c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 30
+  healAmount: 35
 --- !u!95 &1630409453091611508
 Animator:
   serializedVersion: 5

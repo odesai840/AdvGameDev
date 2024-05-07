@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPrefab: {fileID: 1432568729483503782, guid: 40df30aaf42a5e5408c56434d5416f7e, type: 3}
-  initialSpawnCooldown: 30
+  initialSpawnCooldown: 35
   minSpawnCooldown: 1
   cooldownDecreaseRate: 5
   cooldownDecreaseInterval: 60

@@ -148,11 +148,11 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   timeBetweenAttacks: 1.35
-  damage: 10
-  sightRange: 40
+  damage: 7
+  sightRange: 55
   attackRange: 5
   playerInSightRange: 0
-  playerInAttackRange: 0
+  playerInAttackRange: 1
   health: 100
 --- !u!65 &4819879255885028728
 BoxCollider:
